@@ -16,7 +16,7 @@
     <nav class="p-3 navbar navbar-dark bg-dark navbar-expand-lg">
       <div class="container">
         <a class="navbar-brand" href="{% url 'home.index' %}">
-          <img src="{% static 'img/logo.png' %}" alt="logo" height="40" />
+          <img src="{% static 'img/yjalogo.png' %}" alt="logo" height="80" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ms-auto navbar-ml">
             <a class="nav-link" href="{% url 'home.about' %}">About</a>
-            <a class="nav-link" href="{% url 'movies.index' %}">Movies</a>
+            <a class="nav-link" href="{% url 'movies.index' %}">Library</a>
             <a class="nav-link" href="{% url 'cart.index' %}">Cart</a>
             <div class="vr bg-white mx-2 d-none d-lg-block"></div>
             {% if user.is_authenticated %}
@@ -51,11 +51,9 @@
       <div class="container">
         <div class="row mt-3 text-white">
           <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-4">
-            <b>MOVIES STORE</b>
+            <b>YELLOW JACKET ARCHIVES</b>
             <hr />
-            <p>Welcome to Movies Store, your premier online destination for a cinematic 
-              adventure like no other! Dive into the world of movies from the comfort of your own home with our user-friendly 
-              and immersive online movie store.</p>
+            <p>Welcome to Yellow Jacket Archives, your premier online destination for Georgia Tech's digital collections.</p>
           </div>
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
             <b>LINKS</b>
@@ -65,8 +63,8 @@
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
             <b>CONTACT</b>
             <hr />
-            <p><i class="fas fa-home me-2"></i> Atlanta, Georgia/p>
-            <p><i class="fas fa-envelope me-2"></i> info@gtmoviesstore.com</p>
+            <p><i class="fas fa-home me-2"></i> Atlanta, Georgia</p>
+            <p><i class="fas fa-envelope me-2"></i> info@yellowjacketarchives.com</p>
             <p><i class="fas fa-phone me-2"></i> +1 atl-jac-kets</p>
           </div>
         </div>
@@ -75,7 +73,7 @@
     <section class="p-3 ms-footer-bottom bg-dark">
       <div class="container d-flex justify-content-between">
         <div class="me-5 text-white">
-          <span>DESIGNED BY <a href="https://www.x.com/danielgarax" target="_blank">Neha Dossani</a>
+          <span>DESIGNED BY Team 2</a>
           </span>
         </div>
         <div class="text-white">
