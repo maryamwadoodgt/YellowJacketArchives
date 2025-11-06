@@ -12,14 +12,13 @@
             Order #{{ order.id }}
           </div>
           <div class="card-body">
-            <b>Date:</b> {{ order.date }}<br />
-            <b>Total:</b> ${{ order.total }}<br />
+              <b>Date:</b> {{ order.date }}<br />
+              <b>Total items:</b> {{ order.total_items }}<br />
             <table class="table table-bordered table-striped text-center mt-3">
               <thead>
                 <tr>
                   <th scope="col">Item ID</th>
                   <th scope="col">Movie</th>
-                  <th scope="col">Price</th>
                   <th scope="col">Quantity</th>
                 </tr>
               </thead>
@@ -32,7 +31,6 @@
                       {{ item.movie.name }}
                     </a>
                   </td>
-                  <td>${{ item.movie.price }}</td>
                   <td>{{ item.quantity }}</td>
                 </tr>
                 {% endfor %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
 from movies.models import Movie
-from .utils import calculate_cart_total
+from .utils import calculate_total_items
 from .models import Order, Item
 from django.db.models import Sum
 from decimal import Decimal
@@ -15,12 +15,13 @@ def index(request):
     movie_ids = list(cart.keys())
     if (movie_ids != []):
         movies_in_cart = Movie.objects.filter(id__in=movie_ids)
-        cart_total = calculate_cart_total(cart, movies_in_cart)
+        cart_total = calculate_total_items(cart, movies_in_cart)
 
-    template_data = {}
-    template_data['title'] = 'Cart'
-    template_data['movies_in_cart'] = movies_in_cart
-    template_data['cart_total'] = cart_total
+    template_data = {
+        'title': 'Borrow Cart',
+        'movies_in_cart': movies_in_cart,
+        'cart_total': cart_total,
+    }
     return render(request, 'cart/index.html', {'template_data': template_data})
 
 def add(request, id):
@@ -43,17 +44,16 @@ def purchase(request):
         return redirect('cart.index')
     
     movies_in_cart = Movie.objects.filter(id__in=movie_ids)
-    cart_total = calculate_cart_total(cart, movies_in_cart)
+    total_items = calculate_total_items(cart, movies_in_cart)
 
     order = Order()
     order.user = request.user
-    order.total = cart_total
+    order.total_items = total_items
     order.save()
 
     for movie in movies_in_cart:
         item = Item()
         item.movie = movie
-        item.price = movie.price
         item.order = order
         item.quantity = cart[str(movie.id)]
         item.save()
