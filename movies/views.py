@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Movie, Review
+from django.db.models import Q
+from .models import Movie, Review, Book
 from django.contrib.auth.decorators import login_required
 
 def index(request):
@@ -13,6 +14,32 @@ def index(request):
     template_data['title'] = 'Movies'
     template_data['movies'] = movies
     return render(request, 'movies/index.html', {'template_data': template_data})
+
+def books_index(request):
+    """List and search books by title, author or genre."""
+    search_term = request.GET.get('search')
+    if search_term:
+        books = Book.objects.filter(
+            Q(title__icontains=search_term) | Q(author__icontains=search_term) | Q(genre__icontains=search_term)
+        )
+    else:
+        books = Book.objects.all()
+
+    template_data = {
+        'title': 'Library - Books',
+        'books': books,
+    }
+    return render(request, 'movies/books_index.html', {'template_data': template_data})
+
+def books_show(request, id):
+    """Show detailed info about a book."""
+    book = get_object_or_404(Book, id=id)
+
+    template_data = {
+        'title': book.title,
+        'book': book,
+    }
+    return render(request, 'movies/books_show.html', {'template_data': template_data})
 
 def show(request, id):
     movie = Movie.objects.get(id=id)
