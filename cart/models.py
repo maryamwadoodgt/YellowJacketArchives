@@ -4,7 +4,8 @@ from movies.models import Movie
 
 class Order(models.Model):
     id = models.AutoField(primary_key=True)
-    total = models.IntegerField()
+    # total_items stores the number of borrowed items in this order
+    total_items = models.IntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -13,7 +14,6 @@ class Order(models.Model):
 
 class Item(models.Model):
     id = models.AutoField(primary_key=True)
-    price = models.IntegerField()
     quantity = models.IntegerField()
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
