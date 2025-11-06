@@ -82,7 +82,11 @@ def signup(request):
 
 @login_required
 def orders(request):
+    # Show holds: items that belong to this user and have not been returned
     template_data = {}
-    template_data['title'] = 'Orders'
-    template_data['orders'] = request.user.order_set.all()
+    template_data['title'] = 'My Holds'
+    # Get all Item objects for orders owned by the user where returned is False
+    from cart.models import Item
+    holds = Item.objects.filter(order__user=request.user, returned=False).select_related('movie', 'order')
+    template_data['holds'] = holds
     return render(request, 'accounts/orders.html', {'template_data': template_data})
