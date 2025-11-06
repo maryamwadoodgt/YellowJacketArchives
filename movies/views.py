@@ -1,22 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Q
 from .models import Movie, Review
 from django.contrib.auth.decorators import login_required
 
 def index(request):
     search_term = request.GET.get('search')
     if search_term:
-        books = Movie.objects.filter(
-            Q(title__icontains=search_term) |
-            Q(author__icontains=search_term) |
-            Q(genre__icontains=search_term)
-        )
+        movies = Movie.objects.filter(name__icontains=search_term)
     else:
-        books = Movie.objects.all()
+        movies = Movie.objects.all()
 
     template_data = {}
-    template_data['title'] = 'Library'
-    template_data['books'] = books
+    template_data['title'] = 'Movies'
+    template_data['movies'] = movies
     return render(request, 'movies/index.html', {'template_data': template_data})
 
 def show(request, id):
@@ -35,18 +30,19 @@ def create_review(request, id):
         movie = Movie.objects.get(id=id)
         review = Review()
         review.comment = request.POST['comment']
+        review.rating = int(request.POST.get('rating', 0))  # Get rating from form
         review.movie = movie
         review.user = request.user
         review.save()
-        return redirect('library.show', id=id)
+        return redirect('movies.show', id=id)
     else:
-        return redirect('library.show', id=id)
+        return redirect('movies.show', id=id)
 
 @login_required
 def edit_review(request, id, review_id):
     review = get_object_or_404(Review, id=review_id)
     if request.user != review.user:
-        return redirect('library.show', id=id)
+        return redirect('movies.show', id=id)
 
     if request.method == 'GET':
         template_data = {}
@@ -56,13 +52,14 @@ def edit_review(request, id, review_id):
     elif request.method == 'POST' and request.POST['comment'] != '':
         review = Review.objects.get(id=review_id)
         review.comment = request.POST['comment']
+        review.rating = int(request.POST.get('rating', review.rating))  # Keep old rating if not provided
         review.save()
-        return redirect('library.show', id=id)
+        return redirect('movies.show', id=id)
     else:
-        return redirect('library.show', id=id)
+        return redirect('movies.show', id=id)
 
 @login_required
 def delete_review(request, id, review_id):
     review = get_object_or_404(Review, id=review_id, user=request.user)
     review.delete()
-    return redirect('library.show', id=id)
+    return redirect('movies.show', id=id)
