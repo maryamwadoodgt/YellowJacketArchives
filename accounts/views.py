@@ -5,6 +5,8 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Sum
+from django.shortcuts import get_object_or_404
+from django.views.decorators.http import require_POST
 
 @login_required
 def subscription(request):
@@ -90,3 +92,28 @@ def orders(request):
     holds = Item.objects.filter(order__user=request.user, returned=False).select_related('movie', 'order')
     template_data['holds'] = holds
     return render(request, 'accounts/orders.html', {'template_data': template_data})
+
+
+@login_required
+@require_POST
+def mark_returned(request, item_id):
+    """Mark an Item (hold) as returned by the owning user.
+
+    This sets Item.returned = True and decrements the parent Order.total_items by the
+    item's quantity (clamped at zero).
+    """
+    from cart.models import Item
+    item = get_object_or_404(Item, id=item_id)
+    # Ensure the logged-in user owns the order
+    if item.order.user != request.user:
+        return redirect('accounts.orders')
+
+    if not item.returned:
+        item.returned = True
+        item.save()
+        # update order total_items
+        order = item.order
+        order.total_items = max(0, order.total_items - (item.quantity or 0))
+        order.save()
+
+    return redirect('accounts.orders')

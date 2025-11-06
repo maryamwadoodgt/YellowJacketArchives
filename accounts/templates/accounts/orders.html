@@ -31,6 +31,12 @@
                   </td>
                   <td>{{ item.quantity }}</td>
                   <td>{{ item.order.date }}</td>
+                  <td>
+                    <form method="post" action="{% url 'accounts.mark_returned' item_id=item.id %}">
+                      {% csrf_token %}
+                      <button class="btn btn-sm btn-success" type="submit">Mark returned</button>
+                    </form>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
