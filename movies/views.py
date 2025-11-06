@@ -38,15 +38,15 @@ def create_review(request, id):
         review.movie = movie
         review.user = request.user
         review.save()
-        return redirect('movies.show', id=id)
+        return redirect('library.show', id=id)
     else:
-        return redirect('movies.show', id=id)
+        return redirect('library.show', id=id)
 
 @login_required
 def edit_review(request, id, review_id):
     review = get_object_or_404(Review, id=review_id)
     if request.user != review.user:
-        return redirect('movies.show', id=id)
+        return redirect('library.show', id=id)
 
     if request.method == 'GET':
         template_data = {}
@@ -57,12 +57,12 @@ def edit_review(request, id, review_id):
         review = Review.objects.get(id=review_id)
         review.comment = request.POST['comment']
         review.save()
-        return redirect('movies.show', id=id)
+        return redirect('library.show', id=id)
     else:
-        return redirect('movies.show', id=id)
+        return redirect('library.show', id=id)
 
 @login_required
 def delete_review(request, id, review_id):
     review = get_object_or_404(Review, id=review_id, user=request.user)
     review.delete()
-    return redirect('movies.show', id=id)
+    return redirect('library.show', id=id)
