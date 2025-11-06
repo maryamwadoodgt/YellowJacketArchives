@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <header class="masthead bg-index text-white text-center py-4">
   <div class="container d-flex align-items-center flex-column pt-2">
-    <h2>Yellow Jacket Archives</h2>
-    <p>Georgia Tech's Premier Digital Library</p>
   </div>
 </header>
 <div class="p-3">
   <div class="container">
     <div class="row mt-3">
-      <div class="col mx-auto text-center mb-3">
-        <h4>insert some pictures of books here</h4>
+      <!-- Featured Image -->
+      <div class="col-12 px-0"> <!-- removed padding for full width -->
+        <div class="card border-0"> <!-- removed border -->
+          <a href="{% url 'movies.index' %}" class="text-decoration-none"> <!-- makes image clickable -->
+            <img src="{% static 'img/books.jpg' %}" class="img-fluid" alt="Library Collection" style="height: 200px; width: 100vw; object-fit: cover; object-position: center; image-rendering: -webkit-optimize-contrast; -ms-interpolation-mode: nearest-neighbor;">
+            <div class="text-center mt-3 mb-4">
+              <p class="text-dark" style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 1.1rem;">Discover Amazing Books in Our Collection!</p>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
