@@ -11,6 +11,20 @@ class Movie(models.Model):
     def __str__(self):
         return str(self.id) + ' - ' + self.name
 
+class Book(models.Model):
+    """A simple Book model to power library search and detail views."""
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+    genre = models.CharField(max_length=100, blank=True)
+    summary = models.TextField(blank=True)
+    publication_year = models.IntegerField(null=True, blank=True)
+    available = models.BooleanField(default=True)
+    price = models.IntegerField(default=0)
+    image = models.ImageField(upload_to='movie_images/', null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.id} - {self.title} by {self.author}"
 class Review(models.Model):
     id = models.AutoField(primary_key=True)
     comment = models.CharField(max_length=255)
