@@ -1,0 +1,190 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-12 20:53+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: movies/templates/movies/index.html:9
+msgid "Books"
+msgstr ""
+
+#: movies/templates/movies/index.html:16 movies/templates/movies/index.html:21
+msgid "Search"
+msgstr ""
+
+#: movies/templates/movies/index.html:36
+msgid "No cover"
+msgstr ""
+
+#: movies/templates/movies/show.html:11
+msgid "Summary:"
+msgstr ""
+
+#: movies/templates/movies/show.html:12
+msgid "Author:"
+msgstr ""
+
+#: movies/templates/movies/show.html:13
+msgid "Genre:"
+msgstr ""
+
+#: movies/templates/movies/show.html:14
+msgid "Publication Year:"
+msgstr ""
+
+#: movies/templates/movies/show.html:15
+msgid "Availability:"
+msgstr ""
+
+#: movies/templates/movies/show.html:15
+msgid "Available"
+msgstr ""
+
+#: movies/templates/movies/show.html:15
+msgid "Checked out"
+msgstr ""
+
+#: movies/templates/movies/show.html:22
+msgid "Quantity"
+msgstr ""
+
+#: movies/templates/movies/show.html:27
+msgid "Add to cart"
+msgstr ""
+
+#: movies/templates/movies/show.html:33
+msgid "Reviews"
+msgstr "レビュー"
+
+#: movies/templates/movies/show.html:39
+msgid "Review by"
+msgstr "レビュー者"
+
+#: movies/templates/movies/show.html:57
+msgid "Edit"
+msgstr "編集"
+
+#: movies/templates/movies/show.html:61
+msgid "Delete"
+msgstr "削除"
+
+#: movies/templates/movies/show.html:74
+msgid "Create a review"
+msgstr "レビューを作成"
+
+#: movies/templates/movies/show.html:90
+msgid "Comment:"
+msgstr "コメント："
+
+#: movies/templates/movies/show.html:96
+msgid "Add Review"
+msgstr "レビューを追加"
+
+#: movies/templates/movies/show.html:112
+msgid "No cover image"
+msgstr ""
+
+#: movies/templates/movies/show.html:120
+msgid "Find this book at nearby branches"
+msgstr ""
+
+#: movies/templates/movies/show.html:161
+msgid "Copies"
+msgstr ""
+
+#: movies/templates/movies/show.html:174
+msgid "Address not available"
+msgstr ""
+
+#: movies/templates/movies/show.html:175
+msgid "copies"
+msgstr ""
+
+#: movies/templates/movies/show.html:180
+msgid "View on Map"
+msgstr ""
+
+#: movies/templates/movies/show.html:190
+msgid "This book is not available at any nearby branches."
+msgstr ""
+
+#: movies/templates/movies/show.html:194
+msgid "Error loading branch information."
+msgstr ""
+
+#: moviesstore/templates/base.html:32 moviesstore/templates/base.html:84
+msgid "About"
+msgstr "について"
+
+#: moviesstore/templates/base.html:33
+msgid "Library"
+msgstr "ライブラリ"
+
+#: moviesstore/templates/base.html:34
+msgid "Cart"
+msgstr "カート"
+
+#: moviesstore/templates/base.html:40
+msgid "Language"
+msgstr "言語"
+
+#: moviesstore/templates/base.html:55
+msgid "My Holds"
+msgstr "私の予約"
+
+#: moviesstore/templates/base.html:56
+msgid "Logout"
+msgstr "ログアウト"
+
+#: moviesstore/templates/base.html:58
+msgid "Login"
+msgstr "ログイン"
+
+#: moviesstore/templates/base.html:59
+msgid "Sign Up"
+msgstr "サインアップ"
+
+#: moviesstore/templates/base.html:77
+msgid "YELLOW JACKET ARCHIVES"
+msgstr "イエロージャケットアーカイブ"
+
+#: moviesstore/templates/base.html:79
+msgid ""
+"Welcome to Yellow Jacket Archives, your premier online destination for "
+"Georgia Tech's digital collections."
+msgstr ""
+"Yellow Jacketアーカイブへようこそ。Georgia Techのデジタルコレクションのための"
+"トップオンライン目的地です。"
+
+#: moviesstore/templates/base.html:82
+msgid "LINKS"
+msgstr "リンク"
+
+#: moviesstore/templates/base.html:87
+msgid "CONTACT"
+msgstr "接触"
+
+#: moviesstore/templates/base.html:89
+msgid "Atlanta, Georgia"
+msgstr "アトランタ、ジョージア州"
+
+#: moviesstore/templates/base.html:99
+msgid "DESIGNED BY Team 2"
+msgstr "チーム2によって設計"
+
+#: moviesstore/templates/base.html:102
+msgid "Copyright - 2025"
+msgstr "著作権 - 2025"

@@ -1,0 +1,24 @@
+[
+  {
+    "model": "movies.librarybranch",
+    "pk": 1,
+    "fields": {
+      "name": "Georgia Tech Library - Crosland Tower",
+      "address": "901 Cherry St NW, Atlanta, GA 30332",
+      "latitude": "33.7756",
+      "longitude": "-84.3970",
+      "phone": "(404) 894-0000"
+    }
+  },
+  {
+    "model": "movies.librarybranch",
+    "pk": 2,
+    "fields": {
+      "name": "Clough Undergraduate Learning Commons",
+      "address": "266 4th St NW, Atlanta, GA 30332",
+      "latitude": "33.7750",
+      "longitude": "-84.3980",
+      "phone": "(404) 894-1000"
+    }
+  }
+]

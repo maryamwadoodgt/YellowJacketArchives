@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   {% load static %}
+  {% load i18n %}
   <head>
     <title>{{ template_data.title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -28,16 +29,34 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ms-auto navbar-ml">
-            <a class="nav-link" href="{% url 'home.about' %}">About</a>
-            <a class="nav-link" href="{% url 'movies.index' %}">Library</a>
-            <a class="nav-link" href="{% url 'cart.index' %}">Cart</a>
+            <a class="nav-link" href="{% url 'home.about' %}">{% trans "About" %}</a>
+            <a class="nav-link" href="{% url 'movies.index' %}">{% trans "Library" %}</a>
+            <a class="nav-link" href="{% url 'cart.index' %}">{% trans "Cart" %}</a>
             <div class="vr bg-white mx-2 d-none d-lg-block"></div>
+            
+            <!-- Language Selector -->
+            <div class="nav-item dropdown me-3">
+              <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-globe me-1"></i> {% trans "Language" %}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                <li><a class="dropdown-item" href="/en/">🇺🇸 English</a></li>
+                <li><a class="dropdown-item" href="/es/">🇪🇸 Español</a></li>
+                <li><a class="dropdown-item" href="/fr/">🇫🇷 Français</a></li>
+                <li><a class="dropdown-item" href="/de/">🇩🇪 Deutsch</a></li>
+                <li><a class="dropdown-item" href="/zh-hans/">🇨🇳 中文</a></li>
+                <li><a class="dropdown-item" href="/ja/">🇯🇵 日本語</a></li>
+                <li><a class="dropdown-item" href="/pt/">🇵🇹 Português</a></li>
+                <li><a class="dropdown-item" href="/hi/">🇮🇳 हिंदी</a></li>
+              </ul>
+            </div>
+            
             {% if user.is_authenticated %}
-            <a class="nav-link" href="{% url 'accounts.orders' %}">My Holds</a>
-            <a class="nav-link" href="{% url 'accounts.logout' %}">Logout ({{ user.username }})</a>
+            <a class="nav-link" href="{% url 'accounts.orders' %}">{% trans "My Holds" %}</a>
+            <a class="nav-link" href="{% url 'accounts.logout' %}">{% trans "Logout" %} ({{ user.username }})</a>
             {% else %}
-            <a class="nav-link" href="{% url 'accounts.login' %}">Login</a>
-            <a class="nav-link" href="{% url 'accounts.signup' %}">Sign Up</a>
+            <a class="nav-link" href="{% url 'accounts.login' %}">{% trans "Login" %}</a>
+            <a class="nav-link" href="{% url 'accounts.signup' %}">{% trans "Sign Up" %}</a>
             {% endif %}
           </div>
         </div>
@@ -55,19 +74,19 @@
       <div class="container">
         <div class="row mt-3">
           <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mb-4">
-            <b class="text-gold">YELLOW JACKET ARCHIVES</b>
+            <b class="text-gold">{% trans "YELLOW JACKET ARCHIVES" %}</b>
             <hr class="border-gold" />
-            <p class="text-gold">Welcome to Yellow Jacket Archives, your premier online destination for Georgia Tech's digital collections.</p>
+            <p class="text-gold">{% trans "Welcome to Yellow Jacket Archives, your premier online destination for Georgia Tech's digital collections." %}</p>
           </div>
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
-            <b class="text-gold">LINKS</b>
+            <b class="text-gold">{% trans "LINKS" %}</b>
             <hr class="border-gold" />
-            <p><a class="nav-link" href="{% url 'home.about' %}">About</a></p>
+            <p><a class="nav-link" href="{% url 'home.about' %}">{% trans "About" %}</a></p>
           </div>
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
-            <b class="text-gold">CONTACT</b>
+            <b class="text-gold">{% trans "CONTACT" %}</b>
             <hr class="border-gold" />
-            <p class="text-gold"><i class="fas fa-home me-2"></i> Atlanta, Georgia</p>
+            <p class="text-gold"><i class="fas fa-home me-2"></i> {% trans "Atlanta, Georgia" %}</p>
             <p class="text-gold"><i class="fas fa-envelope me-2"></i> info@yellowjacketarchives.com</p>
             <p class="text-gold"><i class="fas fa-phone me-2"></i> +1 atl-jac-kets</p>
           </div>
@@ -77,10 +96,10 @@
     <section class="p-3 ms-footer-bottom bg-dark">
       <div class="container d-flex justify-content-between">
         <div class="me-5">
-          <span class="text-gold">DESIGNED BY Team 2</span>
+          <span class="text-gold">{% trans "DESIGNED BY Team 2" %}</span>
         </div>
         <div>
-          <span class="text-gold">© Copyright - 2025</span>
+          <span class="text-gold">© {% blocktrans %}Copyright - 2025{% endblocktrans %}</span>
         </div>
       </div>
     </section>

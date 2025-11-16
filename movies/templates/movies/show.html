@@ -1,41 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load i18n %}
 <div class="p-3">
   <div class="container">
     <div class="row mt-3">
       <div class="col-md-6 mx-auto mb-3">
-  <h2>{{ template_data.movie.name }}</h2>
+  <h2>{{ template_data.translated_name }}</h2>
         <hr />
-  <p><b>Summary:</b> {{ template_data.movie.description }}</p>
-  <p><b>Author:</b> {{ template_data.movie.author }}</p>
-  <p><b>Genre:</b> {{ template_data.movie.genre }}</p>
-  <p><b>Publication Year:</b> {{ template_data.movie.publication_year }}</p>
-  <p><b>Availability:</b> {% if template_data.movie.available %}Available{% else %}Checked out{% endif %}</p>
+  <p><b>{% trans "Summary:" %}</b> {{ template_data.translated_description }}</p>
+  <p><b>{% trans "Author:" %}</b> {{ template_data.translated_author }}</p>
+  <p><b>{% trans "Genre:" %}</b> {{ template_data.translated_genre }}</p>
+  <p><b>{% trans "Publication Year:" %}</b> {{ template_data.movie.publication_year }}</p>
+  <p><b>{% trans "Availability:" %}</b> {% if template_data.movie.available %}{% trans "Available" %}{% else %}{% trans "Checked out" %}{% endif %}</p>
         <p class="card-text">
           <form method="post" action="{% url 'cart.add' id=template_data.movie.id %}">
             <div class="row">
               {% csrf_token %}
               <div class="col-auto">
                 <div class="input-group col-auto">
-                  <div class="input-group-text">Quantity</div>
+                  <div class="input-group-text">{% trans "Quantity" %}</div>
                   <input type="number" min="1" max="10" class="form-control quantity-input" name="quantity" value="1">
                 </div>
               </div>
               <div class="col-auto">
-                <button class="btn bg-dark text-white" type="submit">Add to cart</button>
+                <button class="btn bg-dark text-white" type="submit">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </form>
         </p>
 
-        <h2>Reviews</h2>
+        <h2>{% trans "Reviews" %}</h2>
         <hr />
         <ul class="list-group">
           {% for review in template_data.reviews %}
           <li class="list-group-item pb-3 pt-3">
             <h5 class="card-title">
-              Review by {{ review.user.username }}
+              {% trans "Review by" %} {{ review.user.username }}
             </h5>
             <div class="stars-display">
               {% for i in "12345" %}
@@ -53,11 +54,11 @@
             {% if user.is_authenticated and user == review.user %}
             <a class="btn btn-primary"
               href="{% url 'movies.edit_review' id=template_data.movie.id review_id=review.id %}">
-              Edit
+              {% trans "Edit" %}
             </a>
             <a class="btn btn-danger"
               href="{% url 'movies.delete_review' id=template_data.movie.id review_id=review.id %}">
-              Delete
+              {% trans "Delete" %}
             </a>
             {% endif %}
           </li>
@@ -70,7 +71,7 @@
             <div class="col-12">
               <div class="card shadow p-3 mb-4 rounded">
                 <div class="card-body">
-                  <b class="text-start">Create a review</b><br /><br />
+                  <b class="text-start">{% trans "Create a review" %}</b><br /><br />
                   <form method="POST" action="{% url 'movies.create_review' id=template_data.movie.id %}">
                     {% csrf_token %}
                     <div class="star-rating mb-3">
@@ -86,13 +87,13 @@
                       <label for="star1" title="1 star"></label>
                     </div>
                     <p>
-                      <label for="comment">Comment:</label>
+                      <label for="comment">{% trans "Comment:" %}</label>
                       <textarea name="comment" required class="form-control" id="comment"></textarea>
                     </p>
 
                     <div class="text-center">
                       <button type="submit" class="btn bg-dark text-white">
-                        Add Review
+                        {% trans "Add Review" %}
                       </button>
                     </div>
                   </form>
@@ -104,9 +105,97 @@
         {% endif %}
       </div>
       <div class="col-md-6 mx-auto mb-3 text-center">
-        <img src="{{ template_data.movie.image.url }}" class="rounded img-card-400" />
+        {% if template_data.movie.image %}
+          <img src="{{ template_data.movie.image.url }}" class="rounded img-card-400" />
+        {% else %}
+          <div class="rounded img-card-400 bg-light d-flex align-items-center justify-content-center" style="height: 400px;">
+            <span class="text-muted">{% trans "No cover image" %}</span>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
+<div class="container mt-4">
+  <h3>{% trans "Find this book at nearby branches" %}</h3>
+  <div id="map" style="height: 400px; width: 100%;" class="mb-3"></div>
+  <div id="branch-list" class="list-group"></div>
+</div>
+
+<!-- Leaflet CSS and JS (Open Source, No API Key Required) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+<script>
+  // Initialize map with Leaflet (no API key needed!)
+  const movieId = "{{ template_data.movie.id }}";
+  const map = L.map('map').setView([33.7756, -84.3970], 14); // Georgia Tech as default center
+
+  // Add OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Fetch branches and display on map
+  async function loadBranches() {
+    try {
+      const response = await fetch(`/movies/${movieId}/branches/`);
+      const data = await response.json();
+      const branches = data.branches || [];
+
+      const branchList = document.getElementById('branch-list');
+      branchList.innerHTML = '';
+
+      branches.forEach((branch) => {
+        if (branch.latitude && branch.longitude) {
+          // Add marker to map
+          const marker = L.marker([branch.latitude, branch.longitude]).addTo(map);
+          
+          // Popup content
+          const popupContent = `
+            <div>
+              <strong>${branch.branch_name}</strong><br/>
+              ${branch.address || ''}<br/>
+              📞 ${branch.phone || 'N/A'}<br/>
+              <strong>{% trans "Copies" %}: ${branch.count}</strong>
+            </div>
+          `;
+          marker.bindPopup(popupContent);
+        }
+
+        // Add to branch list
+        const item = document.createElement('div');
+        item.className = 'list-group-item';
+        item.innerHTML = `
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <strong>${branch.branch_name}</strong><br/>
+              <small class="text-muted">${branch.address || '{% trans "Address not available" %}'}</small><br/>
+              <span class="badge bg-success">📚 ${branch.count} {% trans "copies" %}</span>
+            </div>
+            <div>
+              <a href="https://www.openstreetmap.org/?z=16&lat=${branch.latitude}&lon=${branch.longitude}" 
+                 target="_blank" class="btn btn-sm btn-primary">
+                📍 {% trans "View on Map" %}
+              </a>
+            </div>
+          </div>
+        `;
+        branchList.appendChild(item);
+      });
+
+      // If no branches, show message
+      if (branches.length === 0) {
+        branchList.innerHTML = '<div class="alert alert-info">{% trans "This book is not available at any nearby branches." %}</div>';
+      }
+    } catch (error) {
+      console.error('Error loading branches:', error);
+      document.getElementById('branch-list').innerHTML = '<div class="alert alert-danger">{% trans "Error loading branch information." %}</div>';
+    }
+  }
+
+  // Load branches when page is ready
+  loadBranches();
+</script>
 {% endblock content %}

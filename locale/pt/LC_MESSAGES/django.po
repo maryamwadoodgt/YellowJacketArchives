@@ -1,0 +1,190 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-12 20:53+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: movies/templates/movies/index.html:9
+msgid "Books"
+msgstr ""
+
+#: movies/templates/movies/index.html:16 movies/templates/movies/index.html:21
+msgid "Search"
+msgstr ""
+
+#: movies/templates/movies/index.html:36
+msgid "No cover"
+msgstr ""
+
+#: movies/templates/movies/show.html:11
+msgid "Summary:"
+msgstr ""
+
+#: movies/templates/movies/show.html:12
+msgid "Author:"
+msgstr ""
+
+#: movies/templates/movies/show.html:13
+msgid "Genre:"
+msgstr ""
+
+#: movies/templates/movies/show.html:14
+msgid "Publication Year:"
+msgstr ""
+
+#: movies/templates/movies/show.html:15
+msgid "Availability:"
+msgstr ""
+
+#: movies/templates/movies/show.html:15
+msgid "Available"
+msgstr ""
+
+#: movies/templates/movies/show.html:15
+msgid "Checked out"
+msgstr ""
+
+#: movies/templates/movies/show.html:22
+msgid "Quantity"
+msgstr ""
+
+#: movies/templates/movies/show.html:27
+msgid "Add to cart"
+msgstr ""
+
+#: movies/templates/movies/show.html:33
+msgid "Reviews"
+msgstr "Comentários"
+
+#: movies/templates/movies/show.html:39
+msgid "Review by"
+msgstr "Comentário de"
+
+#: movies/templates/movies/show.html:57
+msgid "Edit"
+msgstr "Editar"
+
+#: movies/templates/movies/show.html:61
+msgid "Delete"
+msgstr "Excluir"
+
+#: movies/templates/movies/show.html:74
+msgid "Create a review"
+msgstr "Criar um comentário"
+
+#: movies/templates/movies/show.html:90
+msgid "Comment:"
+msgstr "Comentário:"
+
+#: movies/templates/movies/show.html:96
+msgid "Add Review"
+msgstr "Adicionar Comentário"
+
+#: movies/templates/movies/show.html:112
+msgid "No cover image"
+msgstr ""
+
+#: movies/templates/movies/show.html:120
+msgid "Find this book at nearby branches"
+msgstr ""
+
+#: movies/templates/movies/show.html:161
+msgid "Copies"
+msgstr ""
+
+#: movies/templates/movies/show.html:174
+msgid "Address not available"
+msgstr ""
+
+#: movies/templates/movies/show.html:175
+msgid "copies"
+msgstr ""
+
+#: movies/templates/movies/show.html:180
+msgid "View on Map"
+msgstr ""
+
+#: movies/templates/movies/show.html:190
+msgid "This book is not available at any nearby branches."
+msgstr ""
+
+#: movies/templates/movies/show.html:194
+msgid "Error loading branch information."
+msgstr ""
+
+#: moviesstore/templates/base.html:32 moviesstore/templates/base.html:84
+msgid "About"
+msgstr "Sobre"
+
+#: moviesstore/templates/base.html:33
+msgid "Library"
+msgstr "Biblioteca"
+
+#: moviesstore/templates/base.html:34
+msgid "Cart"
+msgstr "Carrinho"
+
+#: moviesstore/templates/base.html:40
+msgid "Language"
+msgstr "Idioma"
+
+#: moviesstore/templates/base.html:55
+msgid "My Holds"
+msgstr "Minhas Reservas"
+
+#: moviesstore/templates/base.html:56
+msgid "Logout"
+msgstr "Sair"
+
+#: moviesstore/templates/base.html:58
+msgid "Login"
+msgstr "Entrar"
+
+#: moviesstore/templates/base.html:59
+msgid "Sign Up"
+msgstr "Registre-se"
+
+#: moviesstore/templates/base.html:77
+msgid "YELLOW JACKET ARCHIVES"
+msgstr "ARQUIVOS YELLOW JACKET"
+
+#: moviesstore/templates/base.html:79
+msgid ""
+"Welcome to Yellow Jacket Archives, your premier online destination for "
+"Georgia Tech's digital collections."
+msgstr ""
+"Bem-vindo aos Arquivos Yellow Jacket, seu principal destino online para as "
+"coleções digitais da Universidade Georgia Tech."
+
+#: moviesstore/templates/base.html:82
+msgid "LINKS"
+msgstr "LINKS"
+
+#: moviesstore/templates/base.html:87
+msgid "CONTACT"
+msgstr "CONTATO"
+
+#: moviesstore/templates/base.html:89
+msgid "Atlanta, Georgia"
+msgstr "Atlanta, Geórgia"
+
+#: moviesstore/templates/base.html:99
+msgid "DESIGNED BY Team 2"
+msgstr "PROJETADO PELA Equipe 2"
+
+#: moviesstore/templates/base.html:102
+msgid "Copyright - 2025"
+msgstr "Direitos autorais - 2025"
